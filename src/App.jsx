@@ -24,12 +24,16 @@ const App = () => {
     <Canvas>
       <directionalLight position={[0, 0, 1]} intensity={0.4} />
       <ambientLight intensity={0.5} />
-      <group position={[0, -1, 0]}>
+      {/* <group position={[0, -1, 0]}>
         <Cube position={[1, 0, 0]} color={"green"} args={1} />
         <Cube position={[-1, 0, 0]} color={"hotpink"} args={1} />
         <Cube position={[-1, 2, 0]} color={"blue"} args={1} />
         <Cube position={[1, 2, 0]} color={"yellow"} args={1} />
-      </group>
+      </group> */}
+      <mesh>
+        <torusGeometry />
+        <meshStandardMaterial color={"pink"} />
+      </mesh>
     </Canvas>
   );
 };
