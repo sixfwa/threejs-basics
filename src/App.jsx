@@ -1,7 +1,7 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import "./App.css";
 import { useRef, useState } from "react";
-import { OrbitControls } from "@react-three/drei";
+import { MeshWobbleMaterial, OrbitControls } from "@react-three/drei";
 
 const Cube = ({ position, side, color }) => {
   const ref = useRef();
@@ -33,13 +33,14 @@ const TorusKnot = ({ position, args, color }) => {
   const ref = useRef();
 
   useFrame((state, delta, frame) => {
-    ref.current.rotation.y += delta * 0.2;
+    // ref.current.rotation.y += delta * 0.2;
   });
 
   return (
     <mesh position={position} ref={ref}>
       <torusKnotGeometry args={args} />
-      <meshStandardMaterial color={color} />
+      {/* <meshStandardMaterial color={color} /> */}
+      <MeshWobbleMaterial factor={3} color={"lightblue"} />
     </mesh>
   );
 };
@@ -90,7 +91,7 @@ const App = () => {
         position={[0, 0, 0]}
         color={"yellow"}
       />
-      <OrbitControls />
+      <OrbitControls enableZoom={false} />
     </Canvas>
   );
 };
