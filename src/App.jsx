@@ -29,7 +29,7 @@ const Torus = ({ position, args, color }) => {
   return (
     <mesh ref={ref} position={position}>
       <torusGeometry args={args} />
-      <meshStandardMaterial color={color} />
+      <meshStandardMaterial color={color} wireframe />
     </mesh>
   );
 };
@@ -44,7 +44,7 @@ const TorusKnot = ({ position, args, color }) => {
   return (
     <mesh position={position} ref={ref}>
       <torusKnotGeometry args={args} />
-      <meshStandardMaterial color={color} />
+      <meshStandardMaterial color={color} wireframe />
     </mesh>
   );
 };
@@ -59,7 +59,7 @@ const Sphere = ({ position, args, color }) => {
   return (
     <mesh position={position} ref={ref}>
       <sphereGeometry args={args} />
-      <meshStandardMaterial color={color} />
+      <meshStandardMaterial color={color} wireframe />
     </mesh>
   );
 };
