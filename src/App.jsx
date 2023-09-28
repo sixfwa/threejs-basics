@@ -53,9 +53,11 @@ const Sphere = ({ position, args, color }) => {
   const ref = useRef();
 
   const [isHovered, setIsHovered] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
 
   useFrame((state, delta, frame) => {
-    ref.current.rotation.y += delta * 0.2;
+    const speed = isHovered ? 1 : 0.2;
+    ref.current.rotation.y += delta * speed;
     // ref.current.position.z = Math.sin(state.clock.elapsedTime * 4);
   });
 
@@ -65,6 +67,8 @@ const Sphere = ({ position, args, color }) => {
       ref={ref}
       onPointerEnter={(event) => (event.stopPropagation(), setIsHovered(true))}
       onPointerLeave={() => setIsHovered(false)}
+      onClick={() => setIsClicked(!isClicked)}
+      scale={isClicked ? 1.5 : 1}
     >
       <sphereGeometry args={args} />
       <meshStandardMaterial
