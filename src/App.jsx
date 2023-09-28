@@ -67,7 +67,10 @@ const Sphere = ({ position, args, color }) => {
       onPointerLeave={() => setIsHovered(false)}
     >
       <sphereGeometry args={args} />
-      <meshStandardMaterial color={isHovered ? "blue" : "orange"} wireframe />
+      <meshStandardMaterial
+        color={isHovered ? "lightblue" : "orange"}
+        wireframe
+      />
     </mesh>
   );
 };
