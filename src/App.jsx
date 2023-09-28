@@ -54,6 +54,7 @@ const Sphere = ({ position, args, color }) => {
 
   useFrame((state, delta, frame) => {
     ref.current.rotation.y += delta;
+    ref.current.position.z = Math.sin(state.clock.elapsedTime * 4);
   });
 
   return (
