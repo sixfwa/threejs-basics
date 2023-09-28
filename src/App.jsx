@@ -1,6 +1,6 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import "./App.css";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const Cube = ({ position, side, color }) => {
   const ref = useRef();
@@ -23,7 +23,7 @@ const Torus = ({ position, args, color }) => {
   const ref = useRef();
 
   useFrame((state, delta, frame) => {
-    ref.current.rotation.y += delta;
+    ref.current.rotation.y += delta * 0.2;
   });
 
   return (
@@ -38,7 +38,7 @@ const TorusKnot = ({ position, args, color }) => {
   const ref = useRef();
 
   useFrame((state, delta, frame) => {
-    ref.current.rotation.y += delta;
+    ref.current.rotation.y += delta * 0.2;
   });
 
   return (
@@ -52,15 +52,22 @@ const TorusKnot = ({ position, args, color }) => {
 const Sphere = ({ position, args, color }) => {
   const ref = useRef();
 
+  const [isHovered, setIsHovered] = useState(false);
+
   useFrame((state, delta, frame) => {
-    ref.current.rotation.y += delta;
-    ref.current.position.z = Math.sin(state.clock.elapsedTime * 4);
+    ref.current.rotation.y += delta * 0.2;
+    // ref.current.position.z = Math.sin(state.clock.elapsedTime * 4);
   });
 
   return (
-    <mesh position={position} ref={ref}>
+    <mesh
+      position={position}
+      ref={ref}
+      onPointerEnter={(event) => (event.stopPropagation(), setIsHovered(true))}
+      onPointerLeave={() => setIsHovered(false)}
+    >
       <sphereGeometry args={args} />
-      <meshStandardMaterial color={color} wireframe />
+      <meshStandardMaterial color={isHovered ? "blue" : "orange"} wireframe />
     </mesh>
   );
 };
